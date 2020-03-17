@@ -11,8 +11,10 @@ import java.util.Scanner;
  *
  */
 public class SortParagraphMain {
+	
+	public static int MAX_LENGTH=400;
 
-	public  static void main(String[] args) {
+	public  static void main(String[] args) throws Exception {
 		Scanner input = new Scanner(System.in);
 		String finalInput="";
 		while (input.hasNextLine()) {
@@ -27,8 +29,12 @@ public class SortParagraphMain {
 		System.out.println(output);
 	}
 
-	public static String cleanText(String input) {
+	public static String cleanText(String input) throws Exception {
 		if(input != null) {
+			if(input.length() > MAX_LENGTH) {
+				//TODO we can throw custom exception 
+				throw new Exception("Not supported to implemented text length more than 500");
+			}
 			input = removeWhiteSpace(input);
 			input = removePunchuation(input);
 		}

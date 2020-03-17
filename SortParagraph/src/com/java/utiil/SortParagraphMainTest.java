@@ -5,6 +5,7 @@ package com.java.utiil;
 
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -69,7 +70,7 @@ public class SortParagraphMainTest {
 	}
 	
 	@Test
-	public void removeWhiteSpaceAndPuncuationNullTest()
+	public void removeWhiteSpaceAndPuncuationNullTest() throws Exception
 	{
 		String input = null;
 		String actualResult = SortParagraphMain.cleanText(input);
@@ -78,13 +79,28 @@ public class SortParagraphMainTest {
 	}
 	
 	@Test
-	public void removeWhiteSpaceAndPuncuationTest()
+	public void removeWhiteSpaceAndPuncuationTest() throws Exception
 	{
 		String paragraph = "Hi, how are you? This code should remove white spaces and punchuaiton too.";
 		String expectedResult = "HihowareyouThiscodeshouldremovewhitespacesandpunchuaitontoo";
 		String actualResult = SortParagraphMain.cleanText(paragraph);
 		actualResult = SortParagraphMain.removePunchuation(actualResult);
 		assertTrue(expectedResult.equals(actualResult));
+	}
+	
+	@Test
+	public void oversizeException() {
+		String paragraph = "Hi, how are you? This code should remove white spaces and punchuaiton too."
+				+"Hi, how are you? This code should remove white spaces and punchuaiton too.Hi, how are "
+				+"you? This code should remove white spaces and punchuaiton too.Hi, how are you? "
+				+ "This code should remove white spaces and punchuaiton too.Hi, how are you? This code "
+				+ "should remove white spaces and punchuaiton too.Hi, how are you? This code should "
+				+ "remove white spaces and punchuaiton too.Hi, how are you?";
+		try {
+			SortParagraphMain.cleanText(paragraph);
+			fail();
+		} catch (Exception e) {
+		}
 	}
 	
 	
