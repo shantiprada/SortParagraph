@@ -9,14 +9,14 @@ package com.java.utiil;
  */
 public class SortParagraphMain {
 
-	public static String removeWhiteSpace(String paragraph) {
-		// TODO Auto-generated method stub
-		return null;
+	public static String removeWhiteSpace(String input) {
+		input = input.replaceAll("\\s+", "");
+		return input;
 	}
 
-	public static String removePunchuation(String paragraph) {
-		// TODO Auto-generated method stub
-		return null;
+	public static String removePunchuation(String input) {
+		input = input.replaceAll("[\\,.]","");
+		return input;
 	}
 
 }
