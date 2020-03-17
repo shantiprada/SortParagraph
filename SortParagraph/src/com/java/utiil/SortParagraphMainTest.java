@@ -17,12 +17,28 @@ public class SortParagraphMainTest {
 	SortParagraphMain classUnderTest = new SortParagraphMain();
 	
 	@Test
+	public void removeWhiteSpaceNullTest()
+	{
+		String input = null;
+		String removedWhiteSpacesParagraph = SortParagraphMain.removeWhiteSpace(input);
+		assertSame(input, removedWhiteSpacesParagraph);
+	}
+	
+	@Test
 	public void removeWhiteSpaceTest()
 	{
 		String paragraph = "This code should remove white spaces from this text";
 		String expectedResult = "Thiscodeshouldremovewhitespacesfromthistext";
 		String removedWhiteSpacesParagraph = SortParagraphMain.removeWhiteSpace(paragraph);
 		assertTrue(expectedResult.equals(removedWhiteSpacesParagraph));
+	}
+	
+	@Test
+	public void removePunchuationNullTest()
+	{
+		String input = null;
+		String removedCommasParagraph = SortParagraphMain.removePunchuation(input);
+		assertSame(input, removedCommasParagraph);
 	}
 	
 	@Test
@@ -43,6 +59,33 @@ public class SortParagraphMainTest {
 		assertTrue(expectedResult.equals(removedPeriodsParagraph));
 	}
 	
+	@Test
+	public void removeQuestioMarkTest()
+	{
+		String paragraph = "How are you doing?";
+		String expectedResult = "How are you doing";
+		String removedQuestionMarkParagraph = SortParagraphMain.removePunchuation(paragraph);
+		assertTrue(expectedResult.equals(removedQuestionMarkParagraph));
+	}
+	
+	@Test
+	public void removeWhiteSpaceAndPuncuationNullTest()
+	{
+		String input = null;
+		String actualResult = SortParagraphMain.cleanText(input);
+		actualResult = SortParagraphMain.removePunchuation(actualResult);
+		assertSame(input, actualResult);
+	}
+	
+	@Test
+	public void removeWhiteSpaceAndPuncuationTest()
+	{
+		String paragraph = "Hi, how are you? This code should remove white spaces and punchuaiton too.";
+		String expectedResult = "HihowareyouThiscodeshouldremovewhitespacesandpunchuaitontoo";
+		String actualResult = SortParagraphMain.cleanText(paragraph);
+		actualResult = SortParagraphMain.removePunchuation(actualResult);
+		assertTrue(expectedResult.equals(actualResult));
+	}
 	
 	
 }	

@@ -8,14 +8,27 @@ package com.java.utiil;
  *
  */
 public class SortParagraphMain {
-
-	public static String removeWhiteSpace(String input) {
-		input = input.replaceAll("\\s+", "");
+	
+	public static String cleanText(String input) {
+		if(input != null) {
+			input = removeWhiteSpace(input);
+			input = removePunchuation(input);
+		}
 		return input;
 	}
 
+	public static String removeWhiteSpace(String input) {
+		if(input != null) {
+			input = input.replaceAll("\\s+", "");
+		}
+		return input;
+	}
+
+	
 	public static String removePunchuation(String input) {
-		input = input.replaceAll("[\\,.]","");
+		if(input != null) {
+			input = input.replaceAll("[\\,.?]","");
+		}
 		return input;
 	}
 
